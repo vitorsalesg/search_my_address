@@ -3,30 +3,19 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    color: Colors.yellow,
+    home: HomePage(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
+class HomePage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.yellow,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(),
-    );
-  }
+  _HomePageState createState() => _HomePageState();
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   String street = '';
   String complement = '';
   String district = '';
@@ -36,14 +25,14 @@ class _MyHomePageState extends State<MyHomePage> {
   bool loading = false;
 
   final _formKey = GlobalKey<FormState>();
-  final _field = TextEditingController();
+  final _field = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.yellow,
         title: Text(''),
-        centerTitle: true,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -77,21 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       _field,
                     ),
                   ),
-                  const SizedBox(height: 20.0),
-                  Text(
-                    'Endereço',
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
                   const SizedBox(height: 10.0),
-                  _card('Logradouro: $street'),
-                  _card('Complemento: $complement'),
-                  _card('Bairro: $district'),
-                  _card('Localidade: $locality'),
-                  const SizedBox(height: 20.0),
                   FlatButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -100,11 +75,40 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.yellow,
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
-                        _searchCep(_field.text.replaceAll('-', ''));
+                        _searchAddress(_field.text.replaceAll('-', ''));
                       }
                     },
                     child: loading ? circularWidget() : Text('Buscar'),
-                  )
+                  ),
+                  const SizedBox(height: 20.0),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: <Widget>[
+                        Theme(
+                          data: Theme.of(context).copyWith(
+                            dividerColor: Colors.transparent,
+                            accentColor: Colors.black,
+                          ),
+                          child: ExpansionTile(
+                            title: Text(
+                              "Endereço",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            children: <Widget>[
+                              ListTile(title: Text('Logradouro: $street')),
+                              ListTile(title: Text('Complemento: $complement')),
+                              ListTile(title: Text('Bairro: $district')),
+                              ListTile(title: Text('Localidade: $locality')),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -157,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _searchCep(String cep) async {
+  _searchAddress(String cep) async {
     circleLoading(true);
 
     try {
@@ -197,26 +201,5 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       loading = value;
     });
-  }
-
-  _card(String title) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.black, width: 0.1),
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            title: Text(
-              title,
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
