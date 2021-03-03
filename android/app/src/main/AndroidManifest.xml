@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.search_my_address">
+    package="com.search_my_address">
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="Search My Address"
