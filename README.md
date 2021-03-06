@@ -28,9 +28,9 @@ Search My Address - É um aplicativo para buscar o endereço completo de uma res
 ### Mobile
 
 <p align="center">
-  <img alt="mobile screen" width="300" src="https://user-images.githubusercontent.com/42179077/110210101-ea757280-7e6e-11eb-88a2-84a629ffbed7.png">
-  <img alt="mobile screen" width="300" src="https://user-images.githubusercontent.com/42179077/110210181-3b856680-7e6f-11eb-85de-553e28dfddbf.png">
-  <img alt="mobile screen" width="300" src="https://user-images.githubusercontent.com/42179077/110210183-3cb69380-7e6f-11eb-9250-12b45055f9d5.png">
+  <img alt="mobile screen" width="250" src="https://user-images.githubusercontent.com/42179077/110210101-ea757280-7e6e-11eb-88a2-84a629ffbed7.png">	
+  <img alt="mobile screen" width="250" src="https://user-images.githubusercontent.com/42179077/110210183-3cb69380-7e6f-11eb-9250-12b45055f9d5.png">
+  <img alt="mobile screen" width="250" src="https://user-images.githubusercontent.com/42179077/110210181-3b856680-7e6f-11eb-85de-553e28dfddbf.png">
 </p>
 
 ---
